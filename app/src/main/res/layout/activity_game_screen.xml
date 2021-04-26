@@ -9,15 +9,18 @@
     tools:context=".gameScreen">
 
 
-    <!--image of the grid-->
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        android:adjustViewBounds="true"
+        android:scaleType="fitXY"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="100dp"
         app:srcCompat="@drawable/grid" />
 
     <LinearLayout
@@ -36,7 +39,7 @@
             android:layout_weight="1"
             android:orientation="horizontal">
 
-            <!--images of the grid boxes-->
+
             <ImageView
                 android:id="@+id/imageView0"
                 android:layout_width="match_parent"
@@ -135,7 +138,7 @@
 
     </LinearLayout>
 
-    <!--game status text display-->
+
     <TextView
         android:id="@+id/status"
         android:layout_width="wrap_content"

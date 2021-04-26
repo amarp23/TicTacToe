@@ -7,10 +7,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 
+import java.util.Random;
+
 public class gameScreen extends AppCompatActivity {
     boolean gameActive = true;
 
-    int currentPlayer = 0;
+    int currentPlayer = new Random().nextInt(2);
     int[] gameBoard = {2, 2, 2, 2, 2, 2, 2, 2, 2,};
     // 0- X
     // 1- O
