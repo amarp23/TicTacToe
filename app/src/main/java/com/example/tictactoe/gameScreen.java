@@ -1,4 +1,5 @@
 package com.example.tictactoe;
+//package com.example.countdowntimer;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,11 +8,18 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+//import android.os.CountDownTimer;
+import android.widget.Button;
+//import android.support.v7.app.AppCompatActivit
+
 
 import java.util.Random;
 
 public class gameScreen extends AppCompatActivity {
     boolean gameActive = true;
+    public int counter;
+    Button button;
+    TextView textView;
 
     int currentPlayer = new Random().nextInt(2);
     int[] gameBoard = {2, 2, 2, 2, 2, 2, 2, 2, 2};
@@ -85,4 +93,27 @@ public class gameScreen extends AppCompatActivity {
 
         Intent intent = getIntent();
     }
+    /*
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        button= (Button) findViewById(R.id.button);
+        textView= (TextView) findViewById(R.id.textView);
+        button.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v) {
+                new CountDownTimer(3000, 1000){
+                    public void onTick(long millisUntilFinished){
+                        textView.setText(String.valueOf(counter));
+                        counter++;
+                    }
+                    public  void onFinish(){
+                        textView.setText("FINISH!!");
+                    }
+                }.start();
+            }
+        });
+    }
+    */
 }
