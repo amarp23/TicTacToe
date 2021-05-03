@@ -71,8 +71,8 @@
         android:layout_width="228dp"
         android:layout_height="53dp"
         android:ems="10"
+        android:hint="Username"
         android:inputType="textPersonName"
-        android:text="Username"
         app:layout_constraintBottom_toBottomOf="@+id/player1"
         app:layout_constraintStart_toEndOf="@+id/player1"
         app:layout_constraintTop_toTopOf="@+id/player1" />
@@ -82,8 +82,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
+        android:hint="Username"
         android:inputType="textPersonName"
-        android:text="Username"
         app:layout_constraintBottom_toBottomOf="@+id/player2"
         app:layout_constraintStart_toEndOf="@+id/player2"
         app:layout_constraintTop_toTopOf="@+id/player2" />
