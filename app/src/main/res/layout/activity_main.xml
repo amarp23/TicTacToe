@@ -13,6 +13,7 @@
         android:layout_marginStart="150dp"
         android:onClick="logIn"
         android:text="Log In"
+        android:tag="2"
         app:layout_constraintBottom_toBottomOf="@+id/player2signup"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -26,6 +27,7 @@
         android:layout_marginEnd="150dp"
         android:onClick="signUp"
         android:text="Sign Up"
+        android:tag="2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/player2" />
@@ -96,6 +98,7 @@
         android:layout_marginEnd="150dp"
         android:onClick="signUp"
         android:text="Sign Up"
+        android:tag="1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/player1" />
@@ -107,6 +110,7 @@
         android:layout_marginStart="150dp"
         android:onClick="logIn"
         android:text="Log In"
+        android:tag="1"
         app:layout_constraintBottom_toBottomOf="@+id/player1signup"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
