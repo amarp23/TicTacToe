@@ -7,26 +7,174 @@
     tools:context=".stats">
 
     <TextView
+        android:id="@+id/player1loss"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="@+id/player1wins"
+        app:layout_constraintEnd_toEndOf="@+id/lossColumn"
+        app:layout_constraintStart_toStartOf="@+id/lossColumn"
+        app:layout_constraintTop_toTopOf="@+id/player1wins" />
+
+    <TextView
+        android:id="@+id/player1ties"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="@+id/player1loss"
+        app:layout_constraintEnd_toEndOf="@+id/tieColumn"
+        app:layout_constraintStart_toStartOf="@+id/tieColumn"
+        app:layout_constraintTop_toTopOf="@+id/player1loss" />
+
+    <TextView
+        android:id="@+id/player2wins"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="@+id/player2name"
+        app:layout_constraintEnd_toEndOf="@+id/player1wins"
+        app:layout_constraintStart_toStartOf="@+id/player1wins"
+        app:layout_constraintTop_toTopOf="@+id/player2name" />
+
+    <TextView
+        android:id="@+id/player2loss"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="@+id/player2wins"
+        app:layout_constraintEnd_toEndOf="@+id/player1loss"
+        app:layout_constraintStart_toStartOf="@+id/player1loss"
+        app:layout_constraintTop_toTopOf="@+id/player2wins" />
+
+    <TextView
+        android:id="@+id/player2ties"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="@+id/player2loss"
+        app:layout_constraintEnd_toEndOf="@+id/player1ties"
+        app:layout_constraintStart_toStartOf="@+id/player1ties"
+        app:layout_constraintTop_toTopOf="@+id/player2loss" />
+
+    <TextView
+        android:id="@+id/player2name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="250dp"
+        android:text="Player 2"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/player1name"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/player1name" />
+
+    <TextView
+        android:id="@+id/tieColumn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="50dp"
+        android:text="T"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="@+id/lossColumn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/lossColumn" />
+
+    <TextView
+        android:id="@+id/lossColumn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="75dp"
+        android:layout_marginEnd="75dp"
+        android:layout_marginBottom="200dp"
+        android:text="L"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/tieColumn"
+        app:layout_constraintStart_toEndOf="@+id/winColumn"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
         android:id="@+id/statsTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="475dp"
+        android:layout_marginBottom="500dp"
         android:text="Stats"
         android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.463"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.397" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/resultsText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="300dp"
-        android:text="TextView"
+        android:layout_marginBottom="350dp"
+        android:text="result"
         android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/winColumn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="200dp"
+        android:text="W"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="@+id/lossColumn"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/lossColumn" />
+
+    <TextView
+        android:id="@+id/player1name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="225dp"
+        android:layout_marginBottom="50dp"
+        android:text="Player 1"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/player2name"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/winColumn" />
+
+    <TextView
+        android:id="@+id/player1wins"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="@+id/player1name"
+        app:layout_constraintEnd_toEndOf="@+id/winColumn"
+        app:layout_constraintStart_toStartOf="@+id/winColumn"
+        app:layout_constraintTop_toTopOf="@+id/player1name" />
+
+    <Button
+        android:id="@+id/playWithSamePlayers"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="275dp"
+        android:text="Play Again With Same Players"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/backToHome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="400dp"
+        android:text="Back to Home"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

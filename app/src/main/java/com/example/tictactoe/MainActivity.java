@@ -16,24 +16,38 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
     private EditText usernameEditText;
-    String player1;
-    String player2;
+    String player1 = "";
+    String player2 = "";
+    String player1Id;
+    String player2Id;
+
     int i;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
 
 
     public void startGame(View view){
-        Intent intent = new Intent(this, gameScreen.class);
-        startActivity(intent);
+        if(player1.isEmpty() || player2.isEmpty()){
+            toastMessage("Please sign up or log in before starting a game");
+        } else {
+            Intent intent = new Intent(this, gameScreen.class);
+            intent.putExtra("player1", player1);
+            intent.putExtra("player2", player2);
+            intent.putExtra("player1Id", player1Id);
+            intent.putExtra("player2Id", player2Id);
+            startActivity(intent);
+        }
     }
 
     public void signUp(View view){
@@ -97,14 +111,25 @@ public class MainActivity extends AppCompatActivity {
                     public void onSuccess(DocumentReference documentReference) {
                         toastMessage("You are signed up!");
                         usernameEditText.setEnabled(false);
+                        getPlayerIdFromSignUp(documentReference);
                     }
                 })
+
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
                         toastMessage("Failed to sign up");
                     }
                 });
+
+    }
+
+    public void getPlayerIdFromSignUp(DocumentReference documentReference){
+        if(i == 1){
+            player1Id = documentReference.getId();
+        } else {
+            player2Id = documentReference.getId();
+        }
     }
 
     public void logIn(View view){
@@ -141,6 +166,8 @@ public class MainActivity extends AppCompatActivity {
                                 } else {
                                     player2 = username;
                                 }
+                                getPlayerIdFromLogIn(task);
+                                usernameEditText.setEnabled(false);
                             }
                             else {
                                 toastMessage("Username not found");
@@ -152,7 +179,35 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
 
+//        QuerySnapshot query = db.collection("users").whereEqualTo("name", username).get().getResult();
+//        getPlayerIdFromLogIn(query);
     }
+
+    public void getPlayerIdFromLogIn(Task<QuerySnapshot> task){
+        if(i == 1){
+            for (QueryDocumentSnapshot document : task.getResult()) {
+                player1Id = document.getId();
+            }
+        } else {
+            for (QueryDocumentSnapshot document : task.getResult()) {
+                player2Id = document.getId();
+            }
+        }
+
+    }
+
+//    public void getPlayerIdFromLogIn(QuerySnapshot q){
+//        DocumentSnapshot[] docs = q.getDocuments().toArray(new DocumentSnapshot[0]);
+//        if(i == 1){
+//            for(int k = 0; k < docs.length; k++){
+//                player1Id = docs[k].getId();
+//            }
+//        } else {
+//            for(int k = 0; k < docs.length; k++){
+//                player2Id = docs[k].getId();
+//            }
+//        }
+//    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
