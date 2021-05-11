@@ -33,14 +33,6 @@ public class gameScreen extends AppCompatActivity {
     String player1Id;
     String player2Id;
 
-//    int player1wins;
-//    int player1loss;
-//    int player1ties;
-//
-//    int player2wins;
-//    int player2loss;
-//    int player2ties;
-
     int currentPlayer = new Random().nextInt(2);
     int[] gameBoard = {2, 2, 2, 2, 2, 2, 2, 2, 2};
     // 0- X
@@ -57,7 +49,9 @@ public class gameScreen extends AppCompatActivity {
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
 
 
-
+    // on click- when each square is clicked, assign and set appropriate image to square
+    // check if there is a winner or if the game is finished
+    // if there is, update stats in firestore and call displayResults
     public void clicked(View view){
         ImageView img = (ImageView) view;
         int clickedImg = Integer.parseInt(img.getTag().toString());
@@ -105,8 +99,6 @@ public class gameScreen extends AppCompatActivity {
                     player1Doc.update("loss", FieldValue.increment(1));
                     player2Doc.update("win", FieldValue.increment(1));
                 }
-//                getPlayer1Stats(player1Id);
-//                Log.i("amar", player1wins + " and " + player1loss + " and " + player1ties);
                 displayResults(view);
             }
         }
@@ -117,12 +109,15 @@ public class gameScreen extends AppCompatActivity {
 
             player1Doc.update("tie", FieldValue.increment(1));
             player2Doc.update("tie", FieldValue.increment(1));
-//            getPlayer1Stats(player1Id);
-
             displayResults(view);
+        }
+
+        if (!gameActive) {
+            gameReset(view);
         }
     }
 
+    // sends results and stats to stats screen and goes to stats screen
     public void displayResults(View view){
         Intent intent = new Intent(this, stats.class);
         intent.putExtra("result", result);
@@ -130,39 +125,27 @@ public class gameScreen extends AppCompatActivity {
         intent.putExtra("player2", player2);
         intent.putExtra("player1Id", player1Id);
         intent.putExtra("player2Id", player2Id);
-//        intent.putExtra("player1wins", player1wins);
-//        intent.putExtra("player1loss", player1loss);
-//        intent.putExtra("player1ties", player2ties);
 
         startActivity(intent);
     }
 
-//    public void getPlayer1Stats(String player1Id){
-//        DocumentReference player1Doc = db.collection("users").document(player1Id);
-//        DocumentReference player2Doc = db.collection("users").document(player2Id);
-//
-//        player1Doc.get()
-//                .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-//                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-//                        if (task.isSuccessful()) {
-//                            DocumentSnapshot document = task.getResult();
-//                            getPlayer1Stats2(document);
-//
-//                        } else {
-//                            Log.w("MainActivity", "Error getting documents.", task.getException());
-//                        }
-//                    }
-//                });
-//
-//    }
+    // clears game board
+    public void gameReset(View view) {
+        for (int i = 0; i < gameBoard.length; i++) {
+            gameBoard[i] = 2;
+        }
 
-//    public void getPlayer1Stats2(DocumentSnapshot document){
-//        player1wins = document.getLong("win").intValue();
-//        player1loss = document.getLong("loss").intValue();
-//        player1ties = document.getLong("tie").intValue();
-//        Log.i("amar", "Inside getPlayerStats" + player1wins + " and " + player1loss + " and " + player1ties);
-//
-//    }
+        ((ImageView) findViewById(R.id.imageView0)).setImageResource(0);
+        ((ImageView) findViewById(R.id.imageView1)).setImageResource(0);
+        ((ImageView) findViewById(R.id.imageView2)).setImageResource(0);
+        ((ImageView) findViewById(R.id.imageView3)).setImageResource(0);
+        ((ImageView) findViewById(R.id.imageView4)).setImageResource(0);
+        ((ImageView) findViewById(R.id.imageView5)).setImageResource(0);
+        ((ImageView) findViewById(R.id.imageView6)).setImageResource(0);
+        ((ImageView) findViewById(R.id.imageView7)).setImageResource(0);
+        ((ImageView) findViewById(R.id.imageView8)).setImageResource(0);
+
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
