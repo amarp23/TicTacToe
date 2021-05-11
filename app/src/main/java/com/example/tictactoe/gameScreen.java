@@ -33,13 +33,13 @@ public class gameScreen extends AppCompatActivity {
     String player1Id;
     String player2Id;
 
-    String player1wins;
-    String player1loss;
-    String player1ties;
-
-    String player2wins;
-    String player2loss;
-    String player2ties;
+//    int player1wins;
+//    int player1loss;
+//    int player1ties;
+//
+//    int player2wins;
+//    int player2loss;
+//    int player2ties;
 
     int currentPlayer = new Random().nextInt(2);
     int[] gameBoard = {2, 2, 2, 2, 2, 2, 2, 2, 2};
@@ -98,15 +98,15 @@ public class gameScreen extends AppCompatActivity {
 
                     player1Doc.update("win", FieldValue.increment(1));
                     player2Doc.update("loss", FieldValue.increment(1));
-                    getPlayer1Stats(player1Id);
 
                 } else {
                     result = player2 + " won!";
 
                     player1Doc.update("loss", FieldValue.increment(1));
                     player2Doc.update("win", FieldValue.increment(1));
-                    getPlayer1Stats(player1Id);
                 }
+//                getPlayer1Stats(player1Id);
+//                Log.i("amar", player1wins + " and " + player1loss + " and " + player1ties);
                 displayResults(view);
             }
         }
@@ -117,7 +117,7 @@ public class gameScreen extends AppCompatActivity {
 
             player1Doc.update("tie", FieldValue.increment(1));
             player2Doc.update("tie", FieldValue.increment(1));
-            getPlayer1Stats(player1Id);
+//            getPlayer1Stats(player1Id);
 
             displayResults(view);
         }
@@ -130,37 +130,39 @@ public class gameScreen extends AppCompatActivity {
         intent.putExtra("player2", player2);
         intent.putExtra("player1Id", player1Id);
         intent.putExtra("player2Id", player2Id);
-        intent.putExtra("player1wins", player1wins);
-        intent.putExtra("player1loss", player1loss);
-        intent.putExtra("player1ties", player2ties);
+//        intent.putExtra("player1wins", player1wins);
+//        intent.putExtra("player1loss", player1loss);
+//        intent.putExtra("player1ties", player2ties);
 
         startActivity(intent);
     }
 
-    public void getPlayer1Stats(String player1Id){
-        DocumentReference player1Doc = db.collection("users").document(player1Id);
-        DocumentReference player2Doc = db.collection("users").document(player2Id);
+//    public void getPlayer1Stats(String player1Id){
+//        DocumentReference player1Doc = db.collection("users").document(player1Id);
+//        DocumentReference player2Doc = db.collection("users").document(player2Id);
+//
+//        player1Doc.get()
+//                .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+//                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+//                        if (task.isSuccessful()) {
+//                            DocumentSnapshot document = task.getResult();
+//                            getPlayer1Stats2(document);
+//
+//                        } else {
+//                            Log.w("MainActivity", "Error getting documents.", task.getException());
+//                        }
+//                    }
+//                });
+//
+//    }
 
-        player1Doc.get()
-                .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                        if (task.isSuccessful()) {
-                            DocumentSnapshot document = task.getResult();
-                            getPlayer1Stats2(document);
-
-                        } else {
-                            Log.w("MainActivity", "Error getting documents.", task.getException());
-                        }
-                    }
-                });
-    }
-
-    public void getPlayer1Stats2(DocumentSnapshot document){
-        player1wins = document.getString("win");
-        player1loss = document.getString("loss");
-        player1ties = document.getString("tie");
-
-    }
+//    public void getPlayer1Stats2(DocumentSnapshot document){
+//        player1wins = document.getLong("win").intValue();
+//        player1loss = document.getLong("loss").intValue();
+//        player1ties = document.getLong("tie").intValue();
+//        Log.i("amar", "Inside getPlayerStats" + player1wins + " and " + player1loss + " and " + player1ties);
+//
+//    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
